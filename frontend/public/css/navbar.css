@@ -12,11 +12,24 @@
     z-index: 100;
 }
 
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 .nav-logo {
     font-size: 22px;
     font-weight: bold;
     color: #333;
     letter-spacing: 0.5px;
+}
+
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 24px;
 }
 
 /* LINKS */
@@ -46,6 +59,17 @@
     font-weight: 600;
     letter-spacing: 0.2px;
     white-space: nowrap;
+}
+
+.logout-link {
+    color: #dc2626;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.logout-link:hover {
+    text-decoration: underline;
 }
 
 
