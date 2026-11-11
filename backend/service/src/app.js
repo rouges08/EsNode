@@ -7,10 +7,13 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const pageRoutes = require(paths.ROUTES + '/pageroutes.js');
+const jsonServerPath = path.join(__dirname, '..', '..', 'jsonServer');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(paths.PUBLIC));
+app.use('/json-server', express.static(jsonServerPath));
+app.use('/api/v1/json-server', express.static(jsonServerPath));
 
 app.use('/', pageRoutes);
 app.use('/', require(paths.ROUTES + '/weather.js'));

@@ -1,0 +1,10 @@
+{
+  "authenticated": true,
+  "source": "backend/server-data",
+  "message": "JSON restituito dal backend dedicato",
+  "image": "/api/v1/json-server/polymarket.jpg",
+  "user": {
+    "firstName": "Mario",
+    "role": "admin"
+  }
+}

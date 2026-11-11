@@ -39,13 +39,22 @@ body {
 /* ===== WELCOME GIF SECTION ===== */
 #welcome-content {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
+    gap: 16px;
+}
+
+.welcome-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-top: 25px;
 }
 
 .welcome-box {
-    margin-top: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -57,6 +66,45 @@ body {
     height: auto;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.json-button {
+    background: #1d4ed8;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.json-button:hover {
+    background: #163ea8;
+}
+
+.json-output {
+    width: min(420px, 90vw);
+    background: rgba(15, 23, 42, 0.92);
+    color: #e2e8f0;
+    border-radius: 10px;
+    padding: 14px;
+    text-align: left;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-x: auto;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
+    display: flex;
+    justify-content: center;
+}
+
+.json-image {
+    max-width: 100%;
+    max-height: 520px;
+    border-radius: 10px;
+    object-fit: contain;
+    display: block;
 }
 
 /* ===== FOOTER ===== */

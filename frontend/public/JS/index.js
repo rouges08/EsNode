@@ -7,10 +7,8 @@ async function loadWelcomeGif() {
     }
 
     const user = await response.json();
-    console.log("Risposta API auth:", user); // Utile per verificare la risposta in F12
+    console.log("Risposta API auth:", user);
 
-    // Se la tua API restituisce i dati utente direttamente quando autenticato,
-    // adatta questa condizione (es. user && user.id oppure user.authenticated)
     if (!user || user.authenticated === false) {
       return;
     }
@@ -21,6 +19,9 @@ async function loadWelcomeGif() {
       return;
     }
 
+    const panel = document.createElement("div");
+    panel.className = "welcome-panel";
+
     const box = document.createElement("div");
     box.className = "welcome-box";
 
@@ -28,14 +29,50 @@ async function loadWelcomeGif() {
     img.src = "https://media1.tenor.com/m/qF8LaERf5hoAAAAd/mussolini.gif";
     img.alt = "Welcome Gif";
 
+    const jsonButton = document.createElement("button");
+    jsonButton.type = "button";
+    jsonButton.className = "json-button";
+    jsonButton.textContent = "Mostra JSON";
+
+    const jsonOutput = document.createElement("div");
+    jsonOutput.id = "user-json";
+    jsonOutput.className = "json-output";
+    jsonOutput.hidden = true;
+
+    const jsonImage = document.createElement("img");
+    jsonImage.alt = "Immagine dal JSON";
+    jsonImage.className = "json-image";
+    jsonImage.style.display = "none";
+
+    jsonOutput.appendChild(jsonImage);
+
+    jsonButton.addEventListener("click", async () => {
+      try {
+        const jsonResponse = await fetch("/api/v1/json-server/user.json");
+
+        if (!jsonResponse.ok) {
+          throw new Error(`HTTP error: ${jsonResponse.status}`);
+        }
+
+        const jsonData = await jsonResponse.json();
+        jsonImage.src = jsonData.image;
+        jsonImage.style.display = "block";
+        jsonOutput.hidden = false;
+      } catch (error) {
+        console.error("Errore nel recupero del JSON dal backend:", error);
+      }
+    });
+
     box.appendChild(img);
-    welcomeContent.appendChild(box);
+    panel.appendChild(box);
+    panel.appendChild(jsonButton);
+    panel.appendChild(jsonOutput);
+    welcomeContent.appendChild(panel);
   } catch (err) {
     console.error("Errore durante il caricamento della GIF:", err);
   }
 }
 
-// Esegue la funzione sia se il DOM è ancora in caricamento sia se è già pronto
 if (document.readyState === "loading") {
   window.addEventListener("DOMContentLoaded", loadWelcomeGif);
 } else {

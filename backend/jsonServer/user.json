@@ -1,0 +1,6 @@
+{
+  "authenticated": true,
+  "source": "backend/jsonServer",
+  "message": "JSON servito da una cartella dedicata dentro il backend",
+  "image": "/api/v1/json-server/polymarket.jpg"
+}
